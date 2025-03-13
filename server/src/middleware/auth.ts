@@ -1,31 +1,3 @@
-// import { Request, Response, NextFunction } from 'express';
-// import jwt from 'jsonwebtoken';
-
-// interface JwtPayload {
-//   username: string;
-// }
-
-// export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
-//   // TODO: verify the token exists and add the user data to the request object
-//   const authHeader = req.headers['authorization'];
-
-//   if (authHeader) {
-//     const token = authHeader.split(' ')[1];
-
-//     const secretKey = process.env.JWT_SECRET_KEY || '';
-
-//     jwt.verify(token, secretKey, (err, user) => {
-//       if (err) {
-//         return res.sendStatus(403);
-//       }
-//       req.user = user as JwtPayload;
-//       return req
-//       next();
-//     })
-//   } else {
-//     return res.sendStatus(401);
-//   }
-// };
 import type { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
@@ -33,27 +5,36 @@ interface JwtPayload {
   username: string;
 }
 
+// Middleware to authenticate JWT token
 export const authenticateToken = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
+  // Get the authorization header from the request
   const authHeader = req.headers.authorization;
 
   if (authHeader) {
+    // Extract the token from the authorization header
     const token = authHeader.split(' ')[1];
 
+    // Get the secret key from environment variables
     const secretKey = process.env.JWT_SECRET_KEY || '';
 
+    // Verify the token using the secret key
     jwt.verify(token, secretKey, (err, user) => {
       if (err) {
-        return res.sendStatus(403); // Forbidden
+        // If there is an error, respond with a 403 status code (Forbidden)
+        return res.sendStatus(403);
       }
 
+      // Attach the user information to the request object
       req.user = user as JwtPayload;
+      // Call the next middleware function
       return next();
     });
   } else {
-    res.sendStatus(401); // Unauthorized
+    // If the authorization header is not present, respond with a 401 status code (Unauthorized)
+    res.sendStatus(401);
   }
 };

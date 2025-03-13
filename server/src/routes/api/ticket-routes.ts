@@ -7,6 +7,7 @@ import {
   deleteTicket,
 } from '../../controllers/ticket-controller.js';
 
+// Create a new router instance
 const router = express.Router();
 
 // GET /tickets - Get all tickets
@@ -24,4 +25,5 @@ router.put('/:id', updateTicket);
 // DELETE /tickets/:id - Delete a ticket by id
 router.delete('/:id', deleteTicket);
 
+// Export the router
 export { router as ticketRouter };

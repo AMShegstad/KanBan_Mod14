@@ -7,6 +7,7 @@ import {
   deleteUser,
 } from '../../controllers/user-controller.js';
 
+// Create a new router instance
 const router = express.Router();
 
 // GET /users - Get all users
@@ -24,4 +25,5 @@ router.put('/:id', updateUser);
 // DELETE /users/:id - Delete a user by id
 router.delete('/:id', deleteUser);
 
+// Export the router
 export { router as userRouter };

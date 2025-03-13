@@ -1,9 +1,15 @@
+// Import express Router
 import { Router } from 'express';
+
+// Import User model
 import { User } from '../models/user.js';
+
+// Import JWT and bcrypt libraries
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+
+// Login function to authenticate user and return JWT token
 export const login = async (req, res) => {
-    // TODO: If the user exists and the password is correct, return a JWT token
     const { username, password } = req.body;
     const user = await User.findOne({ where: { username } });
     if (!user) {
@@ -17,7 +23,12 @@ export const login = async (req, res) => {
     const token = jwt.sign({ username }, secretKey, { expiresIn: '1h' });
     return res.json({ token });
 };
+
+// Create a new router instance
 const router = Router();
+
 // POST /login - Login a user
 router.post('/login', login);
+
+// Export the router
 export default router;
