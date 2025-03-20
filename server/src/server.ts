@@ -35,3 +35,8 @@ sequelize.sync({ force: forceDatabaseRefresh }).then(() => {
     console.log(`Server is listening on port ${PORT}`);
   });
 });
+
+/*
+password
+
+*/
