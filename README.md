@@ -25,3 +25,9 @@ We welcome contributions to the KanBan_Mod14 project! To contribute, please foll
 ## License
 This project is licensed under the MIT License. This means you are free to use, modify, and distribute the software, provided that you include the original copyright and permission notice in any copies of the software. For more details, see the [LICENSE](LICENSE) file.
 
+## Live Demo
+[KanBan_Mod14 Live Application](https://kanban-mod14-withauth.onrender.com/)
+
+## GitHub Repository
+[KanBan_Mod14 GitHub Repository](https://github.com/AMShegstad/KanBan_Mod14)
+
