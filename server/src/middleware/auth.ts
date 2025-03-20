@@ -4,10 +4,14 @@ import jwt from 'jsonwebtoken';
 interface JwtPayload {
   username: string;
 }
+// Add the `user` property to the Request interface, if this doesn't work, comment out and change line 14 to "req: Request."
+interface AuthRequest extends Request {
+  user?: any; // Replace `any` with the correct User type
+}
 
 // Middleware to authenticate JWT token
 export const authenticateToken = (
-  req: Request,
+  req: AuthRequest,
   res: Response,
   next: NextFunction
 ) => {
